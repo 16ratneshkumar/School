@@ -1,0 +1,9 @@
+INP
+CMA
+STA 30 ;take any random value like 10
+INP
+CMA
+AND 30 ;take any random value like 10
+CMA
+OUT
+HLT

@@ -1,0 +1,10 @@
+INP
+STA 10
+INP
+CMA
+INC
+ADD 10
+OUT
+HLT
+
+

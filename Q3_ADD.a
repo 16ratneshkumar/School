@@ -1,0 +1,6 @@
+INP
+STA 10 ;store the number in 10th memory location
+INP
+ADD 10 ;take any random value like 10
+OUT
+HLT

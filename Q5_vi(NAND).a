@@ -1,0 +1,7 @@
+INP
+STA 28 ;take any random value like 10
+INP
+AND 28 ;take any random value like 10
+CMA
+OUT
+HLT

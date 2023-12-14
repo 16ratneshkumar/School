@@ -1,0 +1,13 @@
+START1: INP
+        SNA
+        BUN START2
+        BUN END
+
+START2: ADD 10
+        STA 10
+        BUN START1
+
+END:LDA 10
+    OUT
+    HLT
+

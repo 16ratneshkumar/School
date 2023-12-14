@@ -1,0 +1,7 @@
+INP
+STA 7 ;take any random value like 10
+INP
+AND 7 ;take any random value like 10
+OUT
+HLT
+

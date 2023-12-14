@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Machine [
+<!ELEMENT Machine (PunctChar*, Field*, FileChannel*, Register*, RegisterArray*, ConditionBit*, RAM*, Set*, Test*, Increment*, Shift*, Logical*, Arithmetic*, Branch*, TransferRtoR*, TransferRtoA*, TransferAtoR*, Decode*, SetCondBit*, IO*, MemoryAccess*, End, Comment*, EQU*, FetchSequence, MachineInstruction*, HighlightingInfo?, LoadingInfo?, IndexingInfo?, ProgramCounterInfo?, ModuleWindowsInfo?) >
+<!ATTLIST Machine name CDATA "unnamed">
+<!ELEMENT PunctChar EMPTY>
+<!ATTLIST PunctChar char CDATA #REQUIRED use  (symbol|token|label|comment|pseudo|illegal) #REQUIRED>
+<!ELEMENT Field (FieldValue*)>
+<!ATTLIST Field name CDATA #REQUIRED type  (required|optional|ignored) #REQUIRED numBits CDATA #REQUIRED relativity (absolute|pcRelativePreIncr|pcRelativePostIncr) #REQUIRED defaultValue CDATA #REQUIRED signed (true|false) #REQUIRED id ID #REQUIRED>
+<!ELEMENT FieldValue EMPTY>
+<!ATTLIST FieldValue name CDATA #REQUIRED value CDATA #REQUIRED>
+<!ELEMENT FileChannel EMPTY>
+<!ATTLIST FileChannel file CDATA #REQUIRED id CDATA #REQUIRED>
+<!ELEMENT Register EMPTY>
+<!ATTLIST Register name CDATA #REQUIRED width CDATA #REQUIRED initialValue CDATA #REQUIRED readOnly (true|false) "false" id ID #REQUIRED>
+<!ELEMENT RegisterArray (Register+)>
+<!ATTLIST RegisterArray name CDATA #REQUIRED width CDATA #REQUIRED length CDATA #REQUIRED id ID #REQUIRED>
+<!ELEMENT ConditionBit EMPTY>
+<!ATTLIST ConditionBit name CDATA #REQUIRED bit CDATA #REQUIRED register IDREF #REQUIRED halt (true|false) "false" id ID #REQUIRED>
+<!ELEMENT RAM EMPTY>
+<!ATTLIST RAM name CDATA #REQUIRED length CDATA #REQUIRED id ID #REQUIRED cellSize CDATA "8">
+<!ELEMENT Increment EMPTY>
+<!ATTLIST Increment name CDATA #REQUIRED register IDREF #REQUIRED overflowBit IDREF #IMPLIED carryBit IDREF #IMPLIED delta CDATA #REQUIRED id ID #REQUIRED>
+<!ELEMENT Arithmetic EMPTY>
+<!ATTLIST Arithmetic name CDATA #REQUIRED type (ADD|SUBTRACT|MULTIPLY|DIVIDE) #REQUIRED source1 IDREF #REQUIRED source2 IDREF #REQUIRED destination IDREF #REQUIRED overflowBit IDREF #IMPLIED  carryBit IDREF #IMPLIED  id ID #REQUIRED>
+<!ELEMENT TransferRtoR EMPTY>
+<!ATTLIST TransferRtoR name CDATA #REQUIRED source IDREF #REQUIRED srcStartBit CDATA #REQUIRED dest IDREF #REQUIRED destStartBit CDATA #REQUIRED numBits CDATA #REQUIRED id ID #REQUIRED>
+<!ELEMENT TransferRtoA EMPTY>
+<!ATTLIST TransferRtoA name CDATA #REQUIRED source IDREF #REQUIRED srcStartBit CDATA #REQUIRED dest IDREF #REQUIRED destStartBit CDATA #REQUIRED numBits CDATA #REQUIRED index IDREF #REQUIRED indexStart CDATA #IMPLIED indexNumBits CDATA #IMPLIED id ID #REQUIRED>
+<!ELEMENT TransferAtoR EMPTY>
+<!ATTLIST TransferAtoR name CDATA #REQUIRED source IDREF #REQUIRED srcStartBit CDATA #REQUIRED dest IDREF #REQUIRED destStartBit CDATA #REQUIRED numBits CDATA #REQUIRED index IDREF #REQUIRED indexStart CDATA #IMPLIED indexNumBits CDATA #IMPLIED id ID #REQUIRED>
+<!ELEMENT Shift EMPTY>
+<!ATTLIST Shift name CDATA #REQUIRED source IDREF #REQUIRED destination IDREF #REQUIRED type (logical | arithmetic | cyclic) #REQUIRED direction (right | left) #REQUIRED distance CDATA #REQUIRED id ID #REQUIRED>
+<!ELEMENT Branch EMPTY>
+<!ATTLIST Branch name CDATA #REQUIRED amount CDATA #REQUIRED id ID #REQUIRED>
+<!ELEMENT Logical EMPTY>
+<!ATTLIST Logical name CDATA #REQUIRED source1 IDREF #REQUIRED source2 IDREF #REQUIRED destination IDREF #REQUIRED type (AND | OR | NAND | NOR | XOR | NOT) #REQUIRED id ID #REQUIRED>
+<!ELEMENT Set EMPTY>
+<!ATTLIST Set name CDATA #REQUIRED register IDREF #REQUIRED start CDATA #REQUIRED numBits CDATA #REQUIRED value CDATA #REQUIRED id ID #REQUIRED>
+<!ELEMENT Test EMPTY >
+<!ATTLIST Test name CDATA #REQUIRED register IDREF #REQUIRED start CDATA #REQUIRED numBits CDATA #REQUIRED comparison (EQ | NE | LT | GT | LE | GE ) #REQUIRED value CDATA #REQUIRED omission CDATA #REQUIRED id ID #REQUIRED>
+<!ELEMENT Decode EMPTY >
+<!ATTLIST Decode name CDATA #REQUIRED ir IDREF #REQUIRED id ID #REQUIRED>
+<!ELEMENT IO EMPTY >
+<!ATTLIST IO name CDATA #REQUIRED direction (input | output) #REQUIRED type (integer | ascii | unicode) #REQUIRED buffer IDREF #REQUIRED connection CDATA #IMPLIED id ID #REQUIRED>
+<!ELEMENT MemoryAccess EMPTY >
+<!ATTLIST MemoryAccess name CDATA #REQUIRED direction (read | write ) #REQUIRED memory IDREF #REQUIRED data IDREF #REQUIRED address IDREF #REQUIRED id ID #REQUIRED>
+<!ELEMENT SetCondBit EMPTY >
+<!ATTLIST SetCondBit name CDATA #REQUIRED bit IDREF #REQUIRED value (0 | 1) #REQUIRED id ID #REQUIRED>
+<!ELEMENT End EMPTY>
+<!ATTLIST End id ID #REQUIRED>
+<!ELEMENT Comment EMPTY>
+<!ATTLIST Comment name CDATA #REQUIRED id ID #REQUIRED>
+<!ELEMENT Microinstruction EMPTY>
+<!ATTLIST Microinstruction microRef IDREF #REQUIRED>
+<!ELEMENT MachineInstruction (Microinstruction*)>
+<!ATTLIST MachineInstruction name CDATA #REQUIRED opcode CDATA #REQUIRED instructionFormat CDATA #REQUIRED assemblyFormat CDATA #REQUIRED instructionColors CDATA #REQUIRED assemblyColors CDATA #REQUIRED>
+<!ELEMENT FetchSequence (Microinstruction*) >
+<!ELEMENT EQU EMPTY>
+<!ATTLIST EQU name CDATA #REQUIRED value CDATA #REQUIRED>
+<!ELEMENT HighlightingInfo (RegisterRAMPair*)>
+<!ELEMENT RegisterRAMPair EMPTY>
+<!ATTLIST RegisterRAMPair register IDREF #REQUIRED ram IDREF #REQUIRED dynamic (true|false) #REQUIRED>
+<!ELEMENT LoadingInfo EMPTY>
+<!ATTLIST LoadingInfo ram IDREF #IMPLIED startingAddress CDATA "0">
+<!ELEMENT IndexingInfo EMPTY>
+<!ATTLIST IndexingInfo indexFromRight CDATA "false">
+<!ELEMENT ProgramCounterInfo EMPTY>
+<!ATTLIST ProgramCounterInfo programCounter IDREF #REQUIRED>
+<!ELEMENT ModuleWindowsInfo ((RegisterWindowInfo | RegisterArrayWindowInfo | RAMWindowInfo)*) >
+<!ELEMENT RegisterWindowInfo EMPTY>
+<!ATTLIST RegisterWindowInfo top CDATA "50" left CDATA "50" width CDATA "300" height CDATA "150" base (Decimal|Binary|Hexadecimal|Ascii|UnsignedDec|Unicode)  "Decimal">
+<!ELEMENT RegisterArrayWindowInfo EMPTY>
+<!ATTLIST RegisterArrayWindowInfo array IDREF #REQUIRED top CDATA "50" left CDATA "50" width CDATA "300" height CDATA "150" base (Decimal|Binary|Hexadecimal|Ascii|UnsignedDec|Unicode) "Decimal">
+<!ELEMENT RAMWindowInfo EMPTY>
+<!ATTLIST RAMWindowInfo ram IDREF #REQUIRED cellSize CDATA "1" top CDATA "50" left CDATA "50" width CDATA "450" height CDATA "450" contentsbase (Decimal|Binary|Hexadecimal|Ascii|UnsignedDec|Unicode) "Decimal" addressbase (Decimal|Binary|Hexadecimal) "Decimal">
+]>
+
+<Machine name="CSA_1.cpu" >
+	<!--............. Punctuation Options .............-->
+	<PunctChar char="!" use="symbol" />
+	<PunctChar char="#" use="symbol" />
+	<PunctChar char="$" use="symbol" />
+	<PunctChar char="%" use="symbol" />
+	<PunctChar char="&amp;" use="symbol" />
+	<PunctChar char="^" use="symbol" />
+	<PunctChar char="_" use="symbol" />
+	<PunctChar char="`" use="symbol" />
+	<PunctChar char="*" use="symbol" />
+	<PunctChar char="?" use="symbol" />
+	<PunctChar char="@" use="symbol" />
+	<PunctChar char="~" use="symbol" />
+	<PunctChar char="+" use="symbol" />
+	<PunctChar char="-" use="symbol" />
+	<PunctChar char="(" use="token" />
+	<PunctChar char=")" use="token" />
+	<PunctChar char="," use="token" />
+	<PunctChar char="/" use="token" />
+	<PunctChar char="=" use="token" />
+	<PunctChar char="[" use="token" />
+	<PunctChar char="\" use="token" />
+	<PunctChar char="]" use="token" />
+	<PunctChar char="{" use="token" />
+	<PunctChar char="|" use="token" />
+	<PunctChar char="}" use="token" />
+	<PunctChar char="." use="pseudo" />
+	<PunctChar char=":" use="label" />
+	<PunctChar char=";" use="comment" />
+
+	<!--......... machine instruction fields ............-->
+	<Field name="Instructions" type="required" numBits="16" relativity="absolute" signed="false" defaultValue="0" id="model.Field241b82">
+	</Field>
+	<Field name="Address" type="required" numBits="12" relativity="absolute" signed="false" defaultValue="0" id="model.Field146bc65">
+	</Field>
+	<Field name="Opcode" type="required" numBits="4" relativity="absolute" signed="false" defaultValue="0" id="model.Fieldd835c5">
+	</Field>
+
+	<!--............. FileChannels .................-->
+	<!-- none -->
+
+	<!--............. registers .....................-->
+	<Register name="AC" width="16" initialValue="0" readOnly="false" id="model.module.Register1e4b35a" />
+	<Register name="AR" width="12" initialValue="0" readOnly="false" id="model.module.Register2ca664" />
+	<Register name="DR" width="16" initialValue="0" readOnly="false" id="model.module.Register3ee437" />
+	<Register name="E" width="1" initialValue="0" readOnly="false" id="model.module.Register1995f1a" />
+	<Register name="IR" width="16" initialValue="0" readOnly="false" id="model.module.Register1855cd0" />
+	<Register name="PC" width="12" initialValue="0" readOnly="false" id="model.module.Register87d782" />
+	<Register name="Status" width="1" initialValue="0" readOnly="false" id="model.module.Register13b85f9" />
+	<Register name="T" width="1" initialValue="0" readOnly="false" id="model.module.Register676e0b" />
+
+	<!--............. register arrays ...............-->
+	<!-- none -->
+
+	<!--............. condition bits ................-->
+	<ConditionBit name="Halt-Bit" bit="0" register="model.module.Register13b85f9" halt="true" id="model.module.ConditionBit1bbd3cb" />
+
+	<!--............. rams ..........................-->
+	<RAM name="Main Memory" length="4096" cellSize="16" id="model.module.RAM1363ab9" />
+
+	<!--............. set ...........................-->
+	<Set name="AC &lt;- 0" register="model.module.Register1e4b35a" start="0" numBits="16" value="0" id="model.microinstruction.CpusimSet700a6d" />
+	<Set name="AC(0)&lt;-1" register="model.module.Register1e4b35a" start="0" numBits="1" value="1" id="model.microinstruction.CpusimSet475df4" />
+	<Set name="E&lt;-0" register="model.module.Register1995f1a" start="0" numBits="1" value="0" id="model.microinstruction.CpusimSetaa3e07" />
+
+	<!--............. test ..........................-->
+	<Test name="if AC!=0 ,PC=PC+1" register="model.module.Register1e4b35a" start="0" numBits="16" comparison="NE" value="0" omission="1" id="model.microinstruction.Test1a692ab" />
+	<Test name="if AC(15)!=0,PC=PC+1" register="model.module.Register1e4b35a" start="15" numBits="1" comparison="NE" value="0" omission="1" id="model.microinstruction.Testcbc81e" />
+	<Test name="if AC(15)!=1 ,PC=PC+1" register="model.module.Register1e4b35a" start="15" numBits="1" comparison="NE" value="1" omission="1" id="model.microinstruction.Test13e8ce0" />
+	<Test name="if DR!=0 ,PC=PC+1" register="model.module.Register3ee437" start="0" numBits="16" comparison="NE" value="0" omission="1" id="model.microinstruction.Test719605" />
+	<Test name="if E!=0 ,PC=PC+1" register="model.module.Register1995f1a" start="0" numBits="1" comparison="NE" value="0" omission="1" id="model.microinstruction.Test14360ea" />
+
+	<!--............. increment .....................-->
+	<Increment name="AC &lt;- AC+1" register="model.module.Register1e4b35a" delta="1" id="model.microinstruction.Increment194dc64" />
+	<Increment name="AR&lt;- AR+1" register="model.module.Register2ca664" delta="1" id="model.microinstruction.Incrementc0d3a" />
+	<Increment name="DR&lt;- DR+1" register="model.module.Register3ee437" delta="1" id="model.microinstruction.Increment3d6e80" />
+	<Increment name="PC &lt;- PC+1" register="model.module.Register87d782" delta="1" id="model.microinstruction.Increment1f185d" />
+
+	<!--............. shift .........................-->
+	<Shift name="CIL" type="cyclic" source="model.module.Register1e4b35a" destination="model.module.Register1e4b35a" direction="left" distance="1" id="model.microinstruction.Shiftb81213" />
+	<Shift name="CIR" type="cyclic" source="model.module.Register1e4b35a" destination="model.module.Register1e4b35a" direction="right" distance="1" id="model.microinstruction.Shifteb2ee9" />
+
+	<!--............. logical .......................-->
+	<Logical name="AC &lt;- AC ^ DR" type="AND" source1="model.module.Register1e4b35a" source2="model.module.Register3ee437" destination="model.module.Register1e4b35a" id="model.microinstruction.Logical1f72d5f" />
+	<Logical name="AC&lt;-AC'" type="NOT" source1="model.module.Register1e4b35a" source2="model.module.Register1e4b35a" destination="model.module.Register1e4b35a" id="model.microinstruction.Logical36cbae" />
+	<Logical name="E&lt;-E'" type="NOT" source1="model.module.Register1995f1a" source2="model.module.Register1995f1a" destination="model.module.Register1995f1a" id="model.microinstruction.Logical1f4e7cb" />
+
+	<!--............. arithmetic ....................-->
+	<Arithmetic name="AC &lt;- AC + DR" type="ADD" source1="model.module.Register1e4b35a" source2="model.module.Register3ee437" destination="model.module.Register1e4b35a" id="model.microinstruction.Arithmeticb3987b" />
+	<Arithmetic name="AC &lt;- AC-DR" type="SUBTRACT" source1="model.module.Register1e4b35a" source2="model.module.Register3ee437" destination="model.module.Register1e4b35a" id="model.microinstruction.Arithmetic74d727" />
+
+	<!--............. branch ........................-->
+	<!-- none -->
+
+	<!--............. transferRtoR ..................-->
+	<TransferRtoR name="AC(0)&lt;-E" source="model.module.Register1995f1a" srcStartBit="0" dest="model.module.Register1e4b35a" destStartBit="0" numBits="1" id="model.microinstruction.TransferRtoR935d79" />
+	<TransferRtoR name="AC(0-14)&lt;-AC(15-1)" source="model.module.Register1e4b35a" srcStartBit="1" dest="model.module.Register1e4b35a" destStartBit="0" numBits="15" id="model.microinstruction.TransferRtoR9c75e3" />
+	<TransferRtoR name="AC(1-15)&lt;-AC(0-14)" source="model.module.Register1e4b35a" srcStartBit="0" dest="model.module.Register1e4b35a" destStartBit="1" numBits="15" id="model.microinstruction.TransferRtoR2c6a7" />
+	<TransferRtoR name="AC(15)&lt;-E" source="model.module.Register1995f1a" srcStartBit="0" dest="model.module.Register1e4b35a" destStartBit="15" numBits="1" id="model.microinstruction.TransferRtoR122364e" />
+	<TransferRtoR name="AC&lt;-DR" source="model.module.Register3ee437" srcStartBit="0" dest="model.module.Register1e4b35a" destStartBit="0" numBits="16" id="model.microinstruction.TransferRtoR192cc46" />
+	<TransferRtoR name="AR - PC" source="model.module.Register87d782" srcStartBit="0" dest="model.module.Register2ca664" destStartBit="0" numBits="12" id="model.microinstruction.TransferRtoRd29c3a" />
+	<TransferRtoR name="AR &lt;- IR(0-11)" source="model.module.Register1855cd0" srcStartBit="0" dest="model.module.Register2ca664" destStartBit="0" numBits="12" id="model.microinstruction.TransferRtoRb755f9" />
+	<TransferRtoR name="AR &lt;- PC" source="model.module.Register87d782" srcStartBit="0" dest="model.module.Register2ca664" destStartBit="0" numBits="12" id="model.microinstruction.TransferRtoR898927" />
+	<TransferRtoR name="E&lt;-AC(0)" source="model.module.Register1e4b35a" srcStartBit="0" dest="model.module.Register1995f1a" destStartBit="0" numBits="1" id="model.microinstruction.TransferRtoR1989a8c" />
+	<TransferRtoR name="E&lt;-T" source="model.module.Register676e0b" srcStartBit="0" dest="model.module.Register1995f1a" destStartBit="0" numBits="1" id="model.microinstruction.TransferRtoR13be6c9" />
+	<TransferRtoR name="PC&lt;-AR" source="model.module.Register2ca664" srcStartBit="0" dest="model.module.Register87d782" destStartBit="0" numBits="12" id="model.microinstruction.TransferRtoR1cf728a" />
+	<TransferRtoR name="T&lt;-AC(15)" source="model.module.Register1e4b35a" srcStartBit="15" dest="model.module.Register676e0b" destStartBit="0" numBits="1" id="model.microinstruction.TransferRtoR1bb0fa5" />
+
+	<!--............. transferRtoA ..................-->
+	<!-- none -->
+
+	<!--............. transferAtoR ..................-->
+	<!-- none -->
+
+	<!--............. decode ........................-->
+	<Decode name="Decode IR" ir="model.module.Register1855cd0" id="model.microinstruction.Decode3473e0" />
+
+	<!--............. set condition bit .............-->
+	<SetCondBit name="Halt" bit="model.module.ConditionBit1bbd3cb" value="1" id="model.microinstruction.SetCondBit1fb9ae4" />
+
+	<!--............. io ............................-->
+	<IO name="AC &lt;- Input" direction="input" type="integer" buffer="model.module.Register1e4b35a" connection="[Console]" id="model.microinstruction.IO170afcd" />
+	<IO name="Output &lt;- AC" direction="output" type="integer" buffer="model.module.Register1e4b35a" connection="[Console]" id="model.microinstruction.IOcd3dbd" />
+
+	<!--............. memory access .................-->
+	<MemoryAccess name="AR &lt;- M[AR]" direction="read" memory="model.module.RAM1363ab9" data="model.module.Register2ca664" address="model.module.Register2ca664" id="model.microinstruction.MemoryAccess1de505d" />
+	<MemoryAccess name="DR &lt;- M[AR]" direction="read" memory="model.module.RAM1363ab9" data="model.module.Register3ee437" address="model.module.Register2ca664" id="model.microinstruction.MemoryAccessbbb4d8" />
+	<MemoryAccess name="IR &lt;- M[AR]" direction="read" memory="model.module.RAM1363ab9" data="model.module.Register1855cd0" address="model.module.Register2ca664" id="model.microinstruction.MemoryAccess117ac5" />
+	<MemoryAccess name="M[AR] &lt;- DR" direction="write" memory="model.module.RAM1363ab9" data="model.module.Register3ee437" address="model.module.Register2ca664" id="model.microinstruction.MemoryAccess1e89c2f" />
+	<MemoryAccess name="M[AR]&lt;-AC" direction="write" memory="model.module.RAM1363ab9" data="model.module.Register1e4b35a" address="model.module.Register2ca664" id="model.microinstruction.MemoryAccess5b7077" />
+	<MemoryAccess name="M[AR]&lt;-PC" direction="write" memory="model.module.RAM1363ab9" data="model.module.Register87d782" address="model.module.Register2ca664" id="model.microinstruction.MemoryAccess1a30c90" />
+	<MemoryAccess name="PC&lt;-M[AR]" direction="read" memory="model.module.RAM1363ab9" data="model.module.Register87d782" address="model.module.Register2ca664" id="model.microinstruction.MemoryAccess7390f3" />
+
+	<!--............. end ...........................-->
+	<End id="model.microinstruction.End17b7636" />
+
+	<!--............. comment ...........................-->
+	<Comment name="AND content of effective address and AC" id="model.microinstruction.Commentd26da6" />
+	<Comment name="" id="model.microinstruction.Comment14223a0" />
+	<Comment name="" id="model.microinstruction.Comment172d0b3" />
+
+	<!--............. global equs ..................-->
+	<!-- none -->
+
+	<!--............. fetch sequence ................-->
+	<FetchSequence>
+		<Microinstruction microRef="model.microinstruction.TransferRtoR898927" />
+		<Microinstruction microRef="model.microinstruction.MemoryAccess117ac5" />
+		<Microinstruction microRef="model.microinstruction.Increment1f185d" />
+		<Microinstruction microRef="model.microinstruction.TransferRtoRb755f9" />
+		<Microinstruction microRef="model.microinstruction.Decode3473e0" />
+		<Microinstruction microRef="model.microinstruction.End17b7636" />
+	</FetchSequence>
+
+	<!--............. machine instructions ..........-->
+
+	<MachineInstruction name="OUT" opcode="f400" instructionFormat="Instructions" assemblyFormat="Instructions" instructionColors="#f4b8b0" assemblyColors="#f4b8b0" >
+		<Microinstruction microRef="model.microinstruction.IOcd3dbd" />
+		<Microinstruction microRef="model.microinstruction.End17b7636" />
+	</MachineInstruction>
+
+	<MachineInstruction name="INP" opcode="f800" instructionFormat="Instructions" assemblyFormat="Instructions" instructionColors="#cbceef" assemblyColors="#cbceef" >
+		<Microinstruction microRef="model.microinstruction.IO170afcd" />
+		<Microinstruction microRef="model.microinstruction.End17b7636" />
+	</MachineInstruction>
+
+	<MachineInstruction name="HLT" opcode="7001" instructionFormat="Instructions" assemblyFormat="Instructions" instructionColors="#d4d3cc" assemblyColors="#d4d3cc" >
+		<Microinstruction microRef="model.microinstruction.SetCondBit1fb9ae4" />
+		<Microinstruction microRef="model.microinstruction.End17b7636" />
+	</MachineInstruction>
+
+	<MachineInstruction name="SZE" opcode="7002" instructionFormat="Instructions" assemblyFormat="Instructions" instructionColors="#a8cd98" assemblyColors="#a8cd98" >
+		<Microinstruction microRef="model.microinstruction.Test14360ea" />
+		<Microinstruction microRef="model.microinstruction.Increment1f185d" />
+		<Microinstruction microRef="model.microinstruction.End17b7636" />
+	</MachineInstruction>
+
+	<MachineInstruction name="SZA" opcode="7004" instructionFormat="Instructions" assemblyFormat="Instructions" instructionColors="#8dbbb0" assemblyColors="#8dbbb0" >
+		<Microinstruction microRef="model.microinstruction.Test1a692ab" />
+		<Microinstruction microRef="model.microinstruction.Increment1f185d" />
+		<Microinstruction microRef="model.microinstruction.End17b7636" />
+	</MachineInstruction>
+
+	<MachineInstruction name="SNA" opcode="7008" instructionFormat="Instructions" assemblyFormat="Instructions" instructionColors="#afe0b5" assemblyColors="#afe0b5" >
+		<Microinstruction microRef="model.microinstruction.Test13e8ce0" />
+		<Microinstruction microRef="model.microinstruction.Increment1f185d" />
+		<Microinstruction microRef="model.microinstruction.End17b7636" />
+	</MachineInstruction>
+
+	<MachineInstruction name="SPA" opcode="7010" instructionFormat="Instructions" assemblyFormat="Instructions" instructionColors="#d5cf9c" assemblyColors="#d5cf9c" >
+		<Microinstruction microRef="model.microinstruction.Testcbc81e" />
+		<Microinstruction microRef="model.microinstruction.Increment1f185d" />
+		<Microinstruction microRef="model.microinstruction.End17b7636" />
+	</MachineInstruction>
+
+	<MachineInstruction name="INC" opcode="7020" instructionFormat="Instructions" assemblyFormat="Instructions" instructionColors="#85dec3" assemblyColors="#85dec3" >
+		<Microinstruction microRef="model.microinstruction.Increment194dc64" />
+		<Microinstruction microRef="model.microinstruction.End17b7636" />
+	</MachineInstruction>
+
+	<MachineInstruction name="CIL" opcode="7040" instructionFormat="Instructions" assemblyFormat="Instructions" instructionColors="#92faaa" assemblyColors="#92faaa" >
+		<Microinstruction microRef="model.microinstruction.TransferRtoR1bb0fa5" />
+		<Microinstruction microRef="model.microinstruction.TransferRtoR2c6a7" />
+		<Microinstruction microRef="model.microinstruction.TransferRtoR13be6c9" />
+		<Microinstruction microRef="model.microinstruction.TransferRtoR935d79" />
+		<Microinstruction microRef="model.microinstruction.End17b7636" />
+	</MachineInstruction>
+
+	<MachineInstruction name="CIR" opcode="7080" instructionFormat="Instructions" assemblyFormat="Instructions" instructionColors="#dbfae7" assemblyColors="#dbfae7" >
+		<Microinstruction microRef="model.microinstruction.TransferRtoR1989a8c" />
+		<Microinstruction microRef="model.microinstruction.TransferRtoR9c75e3" />
+		<Microinstruction microRef="model.microinstruction.TransferRtoR122364e" />
+		<Microinstruction microRef="model.microinstruction.End17b7636" />
+	</MachineInstruction>
+
+	<MachineInstruction name="CME" opcode="7100" instructionFormat="Instructions" assemblyFormat="Instructions" instructionColors="#c6eaf2" assemblyColors="#c6eaf2" >
+		<Microinstruction microRef="model.microinstruction.Logical1f4e7cb" />
+		<Microinstruction microRef="model.microinstruction.End17b7636" />
+	</MachineInstruction>
+
+	<MachineInstruction name="CMA" opcode="7200" instructionFormat="Instructions" assemblyFormat="Instructions" instructionColors="#eccb8a" assemblyColors="#eccb8a" >
+		<Microinstruction microRef="model.microinstruction.Logical36cbae" />
+		<Microinstruction microRef="model.microinstruction.End17b7636" />
+	</MachineInstruction>
+
+	<MachineInstruction name="CLE" opcode="7400" instructionFormat="Instructions" assemblyFormat="Instructions" instructionColors="#b0cbeb" assemblyColors="#b0cbeb" >
+		<Microinstruction microRef="model.microinstruction.CpusimSetaa3e07" />
+		<Microinstruction microRef="model.microinstruction.End17b7636" />
+	</MachineInstruction>
+
+	<MachineInstruction name="CLA" opcode="7800" instructionFormat="Instructions" assemblyFormat="Instructions" instructionColors="#c090e4" assemblyColors="#c090e4" >
+		<Microinstruction microRef="model.microinstruction.CpusimSet700a6d" />
+		<Microinstruction microRef="model.microinstruction.End17b7636" />
+	</MachineInstruction>
+
+	<MachineInstruction name="ISZ_I" opcode="e" instructionFormat="Opcode Address" assemblyFormat="Opcode Address" instructionColors="#8fdfd7 #85b380" assemblyColors="#8fdfd7 #85b380" >
+		<Microinstruction microRef="model.microinstruction.MemoryAccess1de505d" />
+		<Microinstruction microRef="model.microinstruction.MemoryAccessbbb4d8" />
+		<Microinstruction microRef="model.microinstruction.Increment3d6e80" />
+		<Microinstruction microRef="model.microinstruction.MemoryAccess1e89c2f" />
+		<Microinstruction microRef="model.microinstruction.Test719605" />
+		<Microinstruction microRef="model.microinstruction.Increment1f185d" />
+		<Microinstruction microRef="model.microinstruction.End17b7636" />
+	</MachineInstruction>
+
+	<MachineInstruction name="BSA_I" opcode="d" instructionFormat="Opcode Address" assemblyFormat="Opcode Address" instructionColors="#ccdad9 #8ea3db" assemblyColors="#ccdad9 #8ea3db" >
+		<Microinstruction microRef="model.microinstruction.MemoryAccess1de505d" />
+		<Microinstruction microRef="model.microinstruction.MemoryAccess1a30c90" />
+		<Microinstruction microRef="model.microinstruction.Incrementc0d3a" />
+		<Microinstruction microRef="model.microinstruction.TransferRtoR1cf728a" />
+		<Microinstruction microRef="model.microinstruction.End17b7636" />
+	</MachineInstruction>
+
+	<MachineInstruction name="BUN_I" opcode="c" instructionFormat="Opcode Address" assemblyFormat="Opcode Address" instructionColors="#abc6e4 #8ac3b2" assemblyColors="#abc6e4 #8ac3b2" >
+		<Microinstruction microRef="model.microinstruction.MemoryAccess1de505d" />
+		<Microinstruction microRef="model.microinstruction.MemoryAccess7390f3" />
+		<Microinstruction microRef="model.microinstruction.End17b7636" />
+	</MachineInstruction>
+
+	<MachineInstruction name="STA_I" opcode="b" instructionFormat="Opcode Address" assemblyFormat="Opcode Address" instructionColors="#d4b4b8 #99bfc4" assemblyColors="#d4b4b8 #99bfc4" >
+		<Microinstruction microRef="model.microinstruction.MemoryAccess1de505d" />
+		<Microinstruction microRef="model.microinstruction.MemoryAccess5b7077" />
+		<Microinstruction microRef="model.microinstruction.End17b7636" />
+	</MachineInstruction>
+
+	<MachineInstruction name="LDA_I" opcode="a" instructionFormat="Opcode Address" assemblyFormat="Opcode Address" instructionColors="#a0a1da #d5bee7" assemblyColors="#a0a1da #d5bee7" >
+		<Microinstruction microRef="model.microinstruction.MemoryAccess1de505d" />
+		<Microinstruction microRef="model.microinstruction.MemoryAccessbbb4d8" />
+		<Microinstruction microRef="model.microinstruction.TransferRtoR192cc46" />
+		<Microinstruction microRef="model.microinstruction.End17b7636" />
+	</MachineInstruction>
+
+	<MachineInstruction name="ADD_I" opcode="9" instructionFormat="Opcode Address" assemblyFormat="Opcode Address" instructionColors="#f2f499 #dfc984" assemblyColors="#f2f499 #dfc984" >
+		<Microinstruction microRef="model.microinstruction.MemoryAccess1de505d" />
+		<Microinstruction microRef="model.microinstruction.MemoryAccessbbb4d8" />
+		<Microinstruction microRef="model.microinstruction.Arithmeticb3987b" />
+		<Microinstruction microRef="model.microinstruction.End17b7636" />
+	</MachineInstruction>
+
+	<MachineInstruction name="AND_I" opcode="8" instructionFormat="Opcode Address" assemblyFormat="Opcode Address" instructionColors="#9586b0 #8cc6e2" assemblyColors="#9586b0 #8cc6e2" >
+		<Microinstruction microRef="model.microinstruction.MemoryAccess1de505d" />
+		<Microinstruction microRef="model.microinstruction.MemoryAccessbbb4d8" />
+		<Microinstruction microRef="model.microinstruction.Logical1f72d5f" />
+		<Microinstruction microRef="model.microinstruction.End17b7636" />
+	</MachineInstruction>
+
+	<MachineInstruction name="ISZ" opcode="6" instructionFormat="Opcode Address" assemblyFormat="Opcode Address" instructionColors="#a88baf #96bd95" assemblyColors="#a88baf #96bd95" >
+		<Microinstruction microRef="model.microinstruction.MemoryAccessbbb4d8" />
+		<Microinstruction microRef="model.microinstruction.Increment3d6e80" />
+		<Microinstruction microRef="model.microinstruction.MemoryAccess1e89c2f" />
+		<Microinstruction microRef="model.microinstruction.Test719605" />
+		<Microinstruction microRef="model.microinstruction.Increment1f185d" />
+		<Microinstruction microRef="model.microinstruction.End17b7636" />
+	</MachineInstruction>
+
+	<MachineInstruction name="BSA" opcode="5" instructionFormat="Opcode Address" assemblyFormat="Opcode Address" instructionColors="#b1c7f0 #b88a93" assemblyColors="#b1c7f0 #b88a93" >
+		<Microinstruction microRef="model.microinstruction.MemoryAccess1a30c90" />
+		<Microinstruction microRef="model.microinstruction.Incrementc0d3a" />
+		<Microinstruction microRef="model.microinstruction.TransferRtoR1cf728a" />
+		<Microinstruction microRef="model.microinstruction.End17b7636" />
+	</MachineInstruction>
+
+	<MachineInstruction name="BUN" opcode="4" instructionFormat="Opcode Address" assemblyFormat="Opcode Address" instructionColors="#cee9cb #d9b8bd" assemblyColors="#cee9cb #d9b8bd" >
+		<Microinstruction microRef="model.microinstruction.TransferRtoR1cf728a" />
+		<Microinstruction microRef="model.microinstruction.End17b7636" />
+	</MachineInstruction>
+
+	<MachineInstruction name="STA" opcode="3" instructionFormat="Opcode Address" assemblyFormat="Opcode Address" instructionColors="#c382e0 #82d1db" assemblyColors="#c382e0 #82d1db" >
+		<Microinstruction microRef="model.microinstruction.MemoryAccess5b7077" />
+		<Microinstruction microRef="model.microinstruction.End17b7636" />
+	</MachineInstruction>
+
+	<MachineInstruction name="LDA" opcode="2" instructionFormat="Opcode Address" assemblyFormat="Opcode Address" instructionColors="#c4ddcb #9edcf1" assemblyColors="#c4ddcb #9edcf1" >
+		<Microinstruction microRef="model.microinstruction.MemoryAccessbbb4d8" />
+		<Microinstruction microRef="model.microinstruction.TransferRtoR192cc46" />
+		<Microinstruction microRef="model.microinstruction.End17b7636" />
+	</MachineInstruction>
+
+	<MachineInstruction name="ADD" opcode="1" instructionFormat="Opcode Address" assemblyFormat="Opcode Address" instructionColors="#b1d386 #b7b1e2" assemblyColors="#b1d386 #b7b1e2" >
+		<Microinstruction microRef="model.microinstruction.MemoryAccessbbb4d8" />
+		<Microinstruction microRef="model.microinstruction.Arithmeticb3987b" />
+		<Microinstruction microRef="model.microinstruction.End17b7636" />
+	</MachineInstruction>
+
+	<MachineInstruction name="AND" opcode="0" instructionFormat="Opcode Address" assemblyFormat="Opcode Address" instructionColors="#f2f499 #dfc984" assemblyColors="#f2f499 #dfc984" >
+		<Microinstruction microRef="model.microinstruction.Commentd26da6" />
+		<Microinstruction microRef="model.microinstruction.MemoryAccessbbb4d8" />
+		<Microinstruction microRef="model.microinstruction.Logical1f72d5f" />
+		<Microinstruction microRef="model.microinstruction.End17b7636" />
+		<Microinstruction microRef="model.microinstruction.Comment14223a0" />
+		<Microinstruction microRef="model.microinstruction.Comment172d0b3" />
+	</MachineInstruction>
+
+	<!--............. highlighting info .............-->
+	<HighlightingInfo>
+	</HighlightingInfo>
+
+	<!--............. loading info ..................-->
+	<LoadingInfo ram="model.module.RAM1363ab9" startingAddress="0" />
+
+	<!--............. indexing info ............-->
+	<IndexingInfo indexFromRight="true" />
+
+	<!--............. program counter info ..................-->
+
+</Machine>
