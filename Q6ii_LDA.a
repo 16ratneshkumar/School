@@ -1,6 +1,0 @@
-INP
-STA 7 ;take any random value like 10
-LDA 7 ;take any random value like 10
-OUT
-HLT
-

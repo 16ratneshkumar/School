@@ -1,5 +1,0 @@
-INP
-BUN JUMP ;JUMP is just a variable
-OUT
-JUMP: HLT
-
