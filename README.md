@@ -1,37 +1,45 @@
 # HIERARCHY OF THE REPOSITORY FOR EASY UNDERSTANDING
-   - ## [Class_12]
-       - ### [Practical]
-           - ### [Python]
-               - ### [1.py]
+   - ## [Class_12](https://github.com/16ratneshkumar/School/tree/main/Class_12)
+       - ### [Practical](https://github.com/16ratneshkumar/School/tree/main/Class_12/Practical)
+           - ### [Python](https://github.com/16ratneshkumar/School/tree/main/Class_12/Practical/Python)
+               - ### [1.py](https://github.com/16ratneshkumar/School/blob/main/Class_12/Practical/Python/1.py)
                     - Read A Text File Line By Line And Display Each Word Separated By A #.
-               - ### [2.py]
+               - ### [2.py](https://github.com/16ratneshkumar/School/blob/main/Class_12/Practical/Python/2.py)
                     - Read A Text File And Display The Number Of Vowels/Consonants/Uppercase/Lowercase Characters In The File.
-               - ### [3.py]
-                    - $ Remove All The Lines That Contain The Character 'A' In A File And Write It To Another File.
-               - ### [4.py]
+               - ### [3.py](https://github.com/16ratneshkumar/School/blob/main/Class_12/Practical/Python/3.py)
+                    - Remove All The Lines That Contain The Character 'A' In A File And Write It To Another File.
+               - ### [4.py](https://github.com/16ratneshkumar/School/blob/main/Class_12/Practical/Python/4.py)
                     - $ Create A Binary File With Name And Roll Number. Search For A Given Roll Number And Display The Name, If Not Found Display Appropriate Message.
-               - ### [5.py]
+               - ### [5.py](https://github.com/16ratneshkumar/School/blob/main/Class_12/Practical/Python/5.py)
                     - $ Create A Binary File With Roll Number, Name And Marks. Input A Roll Number And Update The Marks.
-               - ### [6.py]
+               - ### [6.py](https://github.com/16ratneshkumar/School/blob/main/Class_12/Practical/Python/6.py)
                     - Write A Random Number Generator That Generatesrandom Numbers Between 1 And 6 (Simulates A Dice).
-               - ### [7.py]
+               - ### [7.py](https://github.com/16ratneshkumar/School/blob/main/Class_12/Practical/Python/7.py)
                     - Write A Python Program To Implement A Stack Using List.
-               - ### [8.py]
+               - ### [8.py](https://github.com/16ratneshkumar/School/blob/main/Class_12/Practical/Python/8.py)
                     -  Create A CSV File By Entering User-Id And Password, Read And Search The Password For Given User - Id.
-           - ### [Mysql]
-               - ### [1]
+               - ### [myfile.txt](https://github.com/16ratneshkumar/School/blob/main/Class_12/Practical/Python/myfile.txt)
+                    - Text File Used In Above Program.
+               - ### [poemold.txt](https://github.com/16ratneshkumar/School/blob/main/Class_12/Practical/Python/poemold.txt)
+                    - Text File Used In Above Number 3 Program.
+               - ### [poemnew.txt](https://github.com/16ratneshkumar/School/blob/main/Class_12/Practical/Python/poemnew.txt)
+                    - Text File Is Created By Program Number 3 After Running The Program.
+               - ### [poem_with_a.txt](https://github.com/16ratneshkumar/School/blob/main/Class_12/Practical/Python/poem_with_a.txt)
+                    - Text File Is Also Created By Program Number 3 After Running The Program.
+           - ### [Mysql](https://github.com/16ratneshkumar/School/blob/main/Class_12/Practical/Mysql)
+               - ### [1](https://github.com/16ratneshkumar/School/blob/main/Class_12/Practical/Mysql/1.py)
                     - Create a student table and insert data. Implement the following SQL commands on the student table:
                          - ALTER table to add new attributes / modify data type / drop attribute
                          - UPDATE table to modify data
                          - ORDER By to display data in ascending / descending order
                          - DELETE to remove tuple(s)
                          - GROUP BY and find the min, max, sum, count and average
-               - ### [2]
+               - ### [2](https://github.com/16ratneshkumar/School/blob/main/Class_12/Practical/Mysql/2.)
                     - Integrate SQL with Python by importing suitable module.
                          - ### [By mysql.connector]
                          - ### [By pymysql]
-       - ### [Project]
-           - ### [Project.py]
+       - ### [Project](https://github.com/16ratneshkumar/School/tree/main/Class_12/Project)
+           - ### [Project.py](https://github.com/16ratneshkumar/School/blob/main/Class_12/Project/Project.py)
                - health card of a person by using python and mysql
    - ## [Class_11]
        - ### [Python]
