@@ -27,6 +27,8 @@
                - ### [poem_with_a.txt](https://github.com/16ratneshkumar/School/blob/main/Class_12/Practical/Python/poem_with_a.txt)
                     - Text File Is Also Created By Program Number 3 After Running The Program.
            - ### [Mysql](https://github.com/16ratneshkumar/School/blob/main/Class_12/Practical/Mysql)
+               - ### [Command Of Mysql] 
+                    - Here I am writing all the MySQL commands And Functions which I learned in my class 12.
                - ### [1](https://github.com/16ratneshkumar/School/blob/main/Class_12/Practical/Mysql/1.py)
                     - Create a student table and insert data. Implement the following SQL commands on the student table:
                          - ALTER table to add new attributes / modify data type / drop attribute
