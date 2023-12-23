@@ -50,7 +50,7 @@
                - ### [poem_with_a.txt](https://github.com/16ratneshkumar/School/blob/main/Class_12/Practical/Python/poem_with_a.txt)
                     - Text File Is Also Created By Program Number 3 After Running The Program.
            - ### [Mysql](https://github.com/16ratneshkumar/School/blob/main/Class_12/Practical/Mysql)
-               - ### [1.py](https://github.com/16ratneshkumar/School/blob/main/Class_12/Practical/Mysql/1.py)
+               - ### [1.md](https://github.com/16ratneshkumar/School/blob/main/Class_12/Practical/Mysql/1.md)
                     - Create A Student Table And Insert Data. Implement The Following SQL Commands On The Student Table:
                          - ALTER Table To Add New Attributes / Modify Data Type / Drop Attribute
                          - UPDATE Table To Modify Data
