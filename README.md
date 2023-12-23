@@ -1,4 +1,27 @@
 # HIERARCHY OF THE REPOSITORY FOR EASY UNDERSTANDING
+   - ## [Class_11]((https://github.com/16ratneshkumar/School/tree/main/Class_11))
+     - ### [Practical]((https://github.com/16ratneshkumar/School/tree/main/Class_11/Practical))
+          - ### [Python](https://github.com/16ratneshkumar/School/tree/main/Class_11/Practical/Python)
+               - ### [1.py](https://github.com/16ratneshkumar/School/blob/main/Class_11/Practical/Python/1.py)
+                    - Find The Largest And Smallest Number In A Tuple.
+               - ### [2.py](https://github.com/16ratneshkumar/School/blob/main/Class_11/Practical/Python/2.py)
+                    - Input A List Of Elements, Search For A Given Element In The List.
+               - ### [3.py](https://github.com/16ratneshkumar/School/blob/main/Class_11/Practical/Python/3.py)
+                    - Input A List Of Numbers And Find The Smallest And Largest Number From The List.
+               - ### [4.py](https://github.com/16ratneshkumar/School/blob/main/Class_11/Practical/Python/4.py)
+                    - Input A List Of Numbers And Swap Elements At The Even Location With The Elements At The Odd Location.
+               - ### [5.py](https://github.com/16ratneshkumar/School/blob/main/Class_11/Practical/Python/5.py)
+                    - Create A Dictionary With The Roll Number,Name And Marks Of N Students In A Class And Display The Names Of Students Who Have Scored Marks Above 75.
+               - ### [6.py](https://github.com/16ratneshkumar/School/blob/main/Class_11/Practical/Python/6.py)
+                    - To Check Number Is Palindrome Or Not.
+               - ### [7.py](https://github.com/16ratneshkumar/School/blob/main/Class_11/Practical/Python/7.py)
+                    - To Convert Celsics To Fahrenheit And Fahrenheit To Celsics.
+               - ### [8.py](https://github.com/16ratneshkumar/School/blob/main/Class_11/Practical/Python/8.py)
+                    - To Convert Simple Interest And Compound Interest.
+               - ### [9.py](https://github.com/16ratneshkumar/School/blob/main/Class_11/Practical/Python/9.py)
+                    - To Calculate Bmi(Body Mass Index).
+               - ### [10.py](https://github.com/16ratneshkumar/School/blob/main/Class_11/Practical/Python/10.py)
+                    - To Check Number Or String Is Palindrome Or Not.
    - ## [Class_12](https://github.com/16ratneshkumar/School/tree/main/Class_12)
        - ### [Practical](https://github.com/16ratneshkumar/School/tree/main/Class_12/Practical)
            - ### [Python](https://github.com/16ratneshkumar/School/tree/main/Class_12/Practical/Python)
@@ -27,25 +50,23 @@
                - ### [poem_with_a.txt](https://github.com/16ratneshkumar/School/blob/main/Class_12/Practical/Python/poem_with_a.txt)
                     - Text File Is Also Created By Program Number 3 After Running The Program.
            - ### [Mysql](https://github.com/16ratneshkumar/School/blob/main/Class_12/Practical/Mysql)
-               - ### [Command Of Mysql] 
-                    - Here I am writing all the MySQL commands And Functions which I learned in my class 12.
-               - ### [1](https://github.com/16ratneshkumar/School/blob/main/Class_12/Practical/Mysql/1.py)
-                    - Create a student table and insert data. Implement the following SQL commands on the student table:
-                         - ALTER table to add new attributes / modify data type / drop attribute
-                         - UPDATE table to modify data
-                         - ORDER By to display data in ascending / descending order
-                         - DELETE to remove tuple(s)
-                         - GROUP BY and find the min, max, sum, count and average
-               - ### [2](https://github.com/16ratneshkumar/School/blob/main/Class_12/Practical/Mysql/2.)
-                    - Integrate SQL with Python by importing suitable module.
-                         - ### [By mysql.connector]
-                         - ### [By pymysql]
+               - ### [1.py](https://github.com/16ratneshkumar/School/blob/main/Class_12/Practical/Mysql/1.py)
+                    - Create A Student Table And Insert Data. Implement The Following SQL Commands On The Student Table:
+                         - ALTER Table To Add New Attributes / Modify Data Type / Drop Attribute
+                         - UPDATE Table To Modify Data
+                         - ORDER By To Display Data In Ascending / Descending Order
+                         - DELETE To Remove Tuple(S)
+                         - GROUP BY And Find The Min, Max, Sum, Count And Average.
+               - ### [2](https://github.com/16ratneshkumar/School/blob/main/Class_12/Practical/Mysql/2)
+                    - Integrate SQL With Python By Importing Suitable Module.
+                         - ### [1. with mysql.connector](https://github.com/16ratneshkumar/School/blob/main/Class_12/Practical/Mysql/2/1.py)
+                         - ### [2. with pymysql](https://github.com/16ratneshkumar/School/blob/main/Class_12/Practical/Mysql/2/2.py)
        - ### [Project](https://github.com/16ratneshkumar/School/tree/main/Class_12/Project)
            - ### [Project.py](https://github.com/16ratneshkumar/School/blob/main/Class_12/Project/Project.py)
-               - health card of a person by using python and mysql
-   - ## [Class_11]
-       - ### [Python]
-           - ### [Practical]
-
-
-
+               - Health Card Of A Person By Using Python And Mysql.
+                    - Python For Interface.
+                    - Mysql For Database.
+        - ### [Learn_Python.md](https://github.com/16ratneshkumar/School/blob/main/Learn_Python.md)
+          - Here I Am Writing All About Python Which I Learned In My Class 11,12 & Graduation.
+        - ### [Learn_Mysql.md](https://github.com/16ratneshkumar/School/blob/main/Learn_Mysql.md)
+          - Here I Am Writing All The Mysql Commands And Functions Which I Learned In My Class 12.

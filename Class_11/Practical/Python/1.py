@@ -1,4 +1,4 @@
-#FIND THE LARGEST AND SMALLEST NUMBER IN A TUPLE.
+# FIND THE LARGEST AND SMALLEST NUMBER IN A TUPLE.
 numbers = tuple() 
 n = int(input("How Many Numbers You Want To Enter?:"))
 for i in range(1,n+1):

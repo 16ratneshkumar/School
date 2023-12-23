@@ -1,4 +1,4 @@
-#TO CHECK NUMBER IS PALINDROME OR NOT.
+# TO CHECK NUMBER IS PALINDROME OR NOT.
 num=int(input("Enter A Number:: "));
 rev=0
 nnum=num

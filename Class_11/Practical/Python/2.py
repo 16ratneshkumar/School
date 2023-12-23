@@ -1,4 +1,4 @@
-#INPUT A LIST OF ELEMENTS, SEARCH FOR A GIVEN ELEMENT IN THE LIST.
+# INPUT A LIST OF ELEMENTS, SEARCH FOR A GIVEN ELEMENT IN THE LIST.
 List=[]
 n = int(input("How Many Numbers You Want To Enter?:"))
 for i in range(1,n+1):
